@@ -1,0 +1,67 @@
+//https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+
+//------------------------------------------------------Not in-place solution and using extra O(N) space--------------------------------------------------------------------
+//------------------------------------------------------TC: O(Nlog N) + O(N)--------------------------------------------------------------------
+
+int removeDuplicates(vector<int>& nums) {
+        int size = nums.size();
+        int count = 0;
+        
+        map <int, int> ump;
+        for (int i=0; i<nums.size(); i++){
+            
+            if(!ump[nums[i]]){
+                count++;
+                ump[nums[i]]++;
+            }
+            
+        }
+        
+        nums.clear();
+        
+        for (auto x: ump){
+            nums.push_back(x.first);
+        }
+        
+        return count;
+        
+    }
+    
+    //------------------------------------------------------TC: O(N)  in-place solution and using extra O(1) space-----------------------------------------------------------------------
+    
+    
+    int j=0;
+        for (int i=1; i<nums.size(); i++){
+            
+            
+            if(nums[i]!=nums[j]){
+                j++;
+                nums[j] = nums[i];
+                
+            }   
+            
+        }
+        return j+1;
+       }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
