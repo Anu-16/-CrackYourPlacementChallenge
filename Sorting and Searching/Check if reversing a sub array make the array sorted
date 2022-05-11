@@ -1,0 +1,44 @@
+//https://www.geeksforgeeks.org/check-reversing-sub-array-make-array-sorted/
+
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    
+    int n;
+    cin>>n;
+    int arr[n];
+    for (int i=0; i<n; i++){
+        cin>> arr[i];
+    }
+    
+    int temp[n];
+    for (int j=0; j<n; j++){
+        temp[j] = arr[j];
+    }
+    
+    sort(temp, temp+n);
+    
+    int first = 0;
+    for (first=0; first<n; first++){
+        if(temp[first] != arr[first]){
+            break;
+        }
+    }
+    
+    int last = 0;
+    for (last=n-1; last>=0; last--){
+        if(temp[last] != arr[last]){
+            break;
+        }
+    }
+    
+    for (int i=first; i<=last; i++){
+        if(arr[first]<arr[first+1]){
+            return false;
+        }
+    }
+    return true;
+
+}
