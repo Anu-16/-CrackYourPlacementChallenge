@@ -26,9 +26,9 @@ void moveZeroes(vector<int>& nums) {
 
 
 
-// ------------------------------------------------------------TC: O(N) SC: O(N) 
+// ------------------------------------------------------------TC: O(N) SC: O(1) 
 
-// ----------------------------------------------------------- NOT IN PLACE EXTRA VECTOR SPACE IS USED
+// ----------------------------------------------------------- IN PLACE NO EXTRA SPACE IS USED
 
 void moveZeroes(vector<int>& nums) {
         
