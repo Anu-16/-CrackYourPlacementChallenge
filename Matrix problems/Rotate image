@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/rotate-image/
+
+//------------------------------------------TC: O(N2)+ O(N2) nearly equal to O(N2)  SC: O(1)------------------------------------------
+IDEA BEHIND THE APPROACH: 
+=> Take transpose of the matrix as we need to make rows as columns and vice versa
+=> Reverse each row to get the required result
+
+ void rotate(vector<vector<int>>& matrix) {
+        
+        
+        int n = matrix.size();   //3
+        
+        for (int i=0; i<n; i++){
+            for (int j=0; j<i; j++){
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+        
+        for (int i=0; i<n; i++){
+            reverse(matrix[i].begin(), matrix[i].end());
+        }
+        
+    }
