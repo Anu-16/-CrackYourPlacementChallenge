@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/linked-list-cycle/
+
+
+
+bool hasCycle(ListNode *head) {
+        if (head==NULL){
+            return false;
+        }
+        
+        ListNode *t = head;
+        ListNode *h = head;
+        
+        while (h!= NULL && h->next != NULL){
+            h = h->next-> next;
+            t = t->next;
+            
+            if (h==t){
+                return true;
+            }
+        }
+        return false;
+        
+    }
