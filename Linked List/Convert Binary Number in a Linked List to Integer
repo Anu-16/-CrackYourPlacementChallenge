@@ -1,0 +1,49 @@
+//https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
+
+//Converted to binary using in-built function stoi
+
+int getDecimalValue(ListNode* head) {
+        
+        string s = "";
+        ListNode* temp = head;
+        
+        while (temp!=NULL){
+            s += to_string(temp->val);
+            temp = temp->next;
+        }
+        
+        return (stoi(s, 0, 2));
+    }
+    
+    
+    
+///////////////    ///////////////    ///////////////    ///////////////    ///////////////    ///////////////    ///////////////    ///////////////
+    
+    
+    int toBinary(string s){
+        
+        string num = s;
+        int ans = 0;
+        int base = 1;
+ 
+        int len = num.length();
+        for (int i = len - 1; i >= 0; i--) {
+            if (num[i] == '1'){
+                ans += base;
+            }
+            base = base * 2;
+        }
+        return ans;
+    }
+    int getDecimalValue(ListNode* head) {
+        
+        string s = "";
+        ListNode* temp = head;
+        
+        while (temp!=NULL){
+            s += to_string(temp->val);
+            temp = temp->next;
+        }
+        
+        return toBinary(s);
+    }
