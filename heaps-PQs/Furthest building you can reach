@@ -1,0 +1,46 @@
+//https://leetcode.com/problems/furthest-building-you-can-reach/
+
+//-------------------------------------------------------TC: O(nlog n) using priority queue SC: O(N) worst case-------------------------------------------------------
+
+int furthestBuilding(vector<int>& heights, int bricks, int ladders) {
+        
+        int i=0;
+        priority_queue <int> q;
+        for (i=0; i<heights.size()-1; i++){
+            
+            if(heights[i+1]<=heights[i]){
+                continue;
+            }
+            
+            int height_diff = heights[i+1]-heights[i];
+            
+            if (height_diff<= bricks){
+                bricks = bricks - height_diff;
+                q.push(height_diff);
+            }
+            
+            else if(ladders>0){
+                
+                if(q.size()){
+                    
+                    int x = q.top();
+                    if(x>height_diff){
+                        bricks = bricks + x;
+                        q.pop();
+                        q.push(height_diff);
+                        bricks = bricks - height_diff;
+                     
+                    }
+                    
+                }
+                
+                ladders--;
+            }
+            
+            else{
+                break;
+            }
+        }
+        return i;
+        
+    }
