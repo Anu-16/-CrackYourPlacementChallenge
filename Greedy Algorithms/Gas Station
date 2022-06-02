@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/gas-station/
+
+--------------------------------------------------------------------TC: O(N) SC: O(1)-------------------------------------------------------------------------------------
+
+int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int n = gas.size();
+        int total_diff = 0;
+        int curr_diff = 0;
+        int S = 0;
+        
+        for(int i=0; i<n; i++){
+            total_diff += gas[i]-cost[i];
+            curr_diff += gas[i]-cost[i];
+            if(curr_diff<0){
+                curr_diff = 0;
+                S = i+1;
+            }
+        }
+        
+        return (total_diff<0) ? -1:S;
+        
+        
+    }
+    
+    --------------------------------------------------------------------BETTER APPROACH TO BE ADDED-------------------------------------------------------------------------------------
+    
+    
+    
