@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/minimum-absolute-difference-in-bst/
+
+class Solution {
+public:
+    void findInorder(TreeNode* root, vector<int>&v){
+         if(root == NULL){
+            return;
+        }
+        findInorder(root->left, v);
+        v.push_back(root->val);
+        findInorder(root->right, v);
+       
+    }
+    int getMinimumDifference(TreeNode* root) {
+        vector<int>v;
+        findInorder(root, v);
+        
+        
+        int mindiff = INT_MAX;
+        for(int i=0; i<v.size()-1; i++){
+            mindiff = min(mindiff, abs(v[i+1]-v[i]));
+        }
+        return mindiff;
+        
+    }
+    
+};
