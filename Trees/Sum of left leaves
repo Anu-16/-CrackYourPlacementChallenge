@@ -1,0 +1,22 @@
+//https://leetcode.com/problems/sum-of-left-leaves/submissions/
+
+
+class Solution {
+public:
+    int ans = 0;
+    int sumOfLeftLeaves(TreeNode* root) {
+        
+        if(root->left){
+            sumOfLeftLeaves(root->left);
+            if(!root->left->left && !root->left->right){
+                ans = ans + root->left->val;
+            } 
+        }
+        if(root->right){
+            sumOfLeftLeaves(root->right);
+        }
+        
+        
+        return ans;
+    }
+};
