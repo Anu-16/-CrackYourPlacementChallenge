@@ -1,0 +1,60 @@
+//https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/
+
+// using hash table and dfs
+
+class Solution {
+public:
+    void dfs(unordered_map<int, vector<int>>&ump, unordered_map<int, bool>&vis, int start, vector<int>&ans){
+        
+        for(auto it: ump[start]){
+            if(vis[it] != true){
+                vis[it] = true;
+                ans.push_back(it);
+                dfs(ump, vis, it, ans);
+            }
+        }
+        
+    }
+    
+    
+    vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
+        
+        unordered_map<int, vector<int>>ump;         // adjacency list
+        unordered_map<int, bool>vis;                // visited array 
+        vector<int>ans;
+        
+        for(auto it:adjacentPairs){
+            ump[it[0]].push_back(it[1]);
+            ump[it[1]].push_back(it[0]);
+        }
+        
+        int start;
+        for(auto it:ump){
+            if(it.second.size()==1){
+                start = it.first;
+                break;
+            }
+        }
+        
+        vis[start] = true;
+        ans.push_back(start);
+        dfs(ump, vis, start, ans);
+        
+        return ans;
+        
+        
+    }
+};
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
