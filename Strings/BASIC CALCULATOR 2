@@ -1,0 +1,55 @@
+class Solution {
+public:
+    int calculate(string s) {
+        int n = s.length();
+        char curr_op = '+';
+        stack<int>st;
+        
+        for(int i=0; i<n; i++){
+            
+            char curr_num = s[i];
+            
+            if(isdigit(curr_num)){
+                int num = 0;
+                while(i<n && isdigit(s[i])){
+                    num = num*10 + (s[i]-'0');
+                    i++;
+                }
+                i--;
+                
+                if(curr_op == '+'){
+                    st.push(num);
+                }
+                else if(curr_op == '-'){
+                    st.push(-num);
+                }
+                else if(curr_op == '*'){
+                    int a = st.top();
+                    st.pop();
+                    st.push(a*num);
+                }
+                else if(curr_op == '/'){
+                    int a = st.top();
+                    st.pop();
+                    st.push(a/num);
+                }
+                              
+            }
+            
+            else if(curr_num != ' '){
+                curr_op = curr_num;
+            }
+           
+        }
+        
+        int ans = 0;
+        while(!st.empty()){
+            
+            int top = st.top();
+            st.pop();
+            ans += top;
+            
+        }
+        return ans;
+    }
+};
