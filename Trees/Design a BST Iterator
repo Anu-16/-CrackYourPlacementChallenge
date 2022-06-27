@@ -1,0 +1,40 @@
+//https://leetcode.com/problems/binary-search-tree-iterator/submissions/
+
+class BSTIterator {
+    
+private:
+    
+    stack<TreeNode*> st;
+    
+public:
+    BSTIterator(TreeNode* root) {
+        pushall(root);
+        
+    }
+    
+    int next() {
+        
+        TreeNode* temp = st.top();
+        st.pop();
+        
+        pushall(temp->right);
+        return temp->val;
+        
+    }
+    
+    bool hasNext() {
+        
+        if(!st.empty()){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+    
+private:
+    void pushall(TreeNode* node){
+        for(; node!=NULL; st.push(node), node = node->left);
+    }
+};
