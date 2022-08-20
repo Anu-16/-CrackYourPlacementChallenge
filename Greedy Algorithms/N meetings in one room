@@ -1,0 +1,30 @@
+//https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1
+
+//https://www.geeksforgeeks.org/find-maximum-meetings-in-one-room/#:~:text=There%20is%20one%20meeting%20room%20in%20a%20firm.,that%20can%20be%20accommodated%20in%20the%20meeting%20room.
+
+
+int maxMeetings(int start[], int end[], int n)
+    {
+       
+        pair<int,int>a[n];                                // pair to store end time and index
+        for(int i=0; i<n; i++){                           // filling up the pairs
+            a[i].first = end[i];
+            a[i].second = i;
+        }
+        
+        sort(a, a+n);                                   // sorting the pair on the basis of first element
+        vector<int>ans;                                 // creating an answer vec to store the meeting numbers
+        ans.push_back(1);
+        int limit = a[0].first;                         // creating a variable limit and setting its value equal to end time of first meeting
+        
+        for(int i=1; i<n; i++){                       // traversing through all the meetings
+            if(start[a[i].second]>limit){
+                ans.push_back(a[i].second + 1);
+                limit = a[i].first;
+            }
+            
+        }
+        
+        return ans.size();
+        
+    }
