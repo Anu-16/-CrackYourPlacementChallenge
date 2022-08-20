@@ -1,0 +1,37 @@
+//https://practice.geeksforgeeks.org/problems/minimum-platforms-1587115620/1#
+//https://www.youtube.com/watch?v=dxVcMDI7vyI
+
+//------------------------------------------------TC: O(2NlogN) + O(2N)-----------SC: O(1)------------------------------------------------------------------------------------------------
+
+class Solution{
+    public:
+    //Function to find the minimum number of platforms required at the
+    //railway station such that no train waits.
+    int findPlatform(int arr[], int dep[], int n)
+    {
+    	// Your code here
+    	sort(arr, arr+n);         // sorting both the arrays
+    	sort(dep, dep+n);
+    	
+    	int occ = 1;            // occupied platforms var = 1 for the first arrived train
+    	int result = 1;
+    	
+    	int i=1, j=0;         // keeping two pointers for the two arrays respectively
+    	while(i<n && j<n){
+    	    
+    	    if(arr[i]<=dep[j]){       // if arrival time is lesser than the dept time increase the occupancy
+    	        occ++;
+    	        i++;
+    	    }
+    	    else if(arr[i]>dep[j]){     // if dept time is lesser than the occ time decrease the occupancy (empty the occupied platform)
+    	        occ--;
+    	        j++;
+    	    }
+    	    
+    	    if(occ>result){
+    	        result = occ;
+    	    }
+    	}
+    	return result;
+    }
+};
